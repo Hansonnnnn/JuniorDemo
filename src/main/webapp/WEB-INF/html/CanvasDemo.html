@@ -386,7 +386,83 @@
         ctx.fill("evenodd");
     }
 
+    //文本填充
+    //    fillText(text, x, y [, maxWidth]),在指定的(x,y)位置填充指定的文本，绘制的最大宽度是可选的.
+    //    strokeText(text, x, y [, maxWidth]),在指定的(x,y)位置绘制文本边框，绘制的最大宽度是可选的.
+    function fillTextTest() {
+        ctx.font = "48px serif";
+        ctx.textBaseline = "hanging";
+        ctx.fillText("Hello World!", 0, 100);
 
+//        ctx.strokeText("Hello World!", 10, 10);
+    }
+//    fillTextTest();
+    //有样式的文本
+    //font = value,当前我们用来绘制文本的样式. 这个字符串使用和 CSS font 属性相同的语法. 默认的字体是 10px sans-serif。
+    //textAlign = value,文本对齐选项. 可选的值包括：start, end, left, right or center. 默认值是 start。
+    //textBaseline = value,基线对齐选项. 可选的值包括：top, hanging, middle, alphabetic, ideographic, bottom。默认值是 alphabetic。
+    //http://www.whatwg.org/specs/web-apps/current-work/images/baselines.png
+    //direction = value,文本方向。可能的值包括：ltr, rtl, inherit。默认值是 inherit。
+
+
+    //图像的操作
+    //引入图像到canvas里需要以下两步基本操作：
+    //1.获得一个指向HTMLImageElement的对象或者另一个canvas元素的引用作为源，也可以通过提供一个URL的方式来使用图片（参见例子）
+    //2.使用drawImage()函数将图片绘制到画布上
+    //图片的源:
+    // HTMLImageElement(这些图片是由Image()函数构造出来的，或者任何的<img>元素)
+    // HTMLVideoElement用一个HTML的 <video>元素作为你的图片源，可以从视频中抓取当前帧作为一个图像
+    // HTMLCanvasElement可以使用另一个 <canvas> 元素作为你的图片源。
+    // ImageBitmap这是一个高性能的位图，可以低延迟地绘制，它可以从上述的所有源以及其它几种源中生成。
+
+    //通过下列方法的一种来获得与canvas相同页面内的图片的引用：
+    //1. document.images集合
+    //2. document.getElementsByTagName()方法
+    //3. 如果你知道你想使用的指定图片的ID，你可以用document.getElementById()获得这个图片
+
+    //使用其它域名下的图片
+    // 在HTMLImageElement上使用crossOrigin属性，你可以请求加载其它域名上的图片。如果图片的服务器允许跨域访问这个图片，那么你可以使用这个图片而不污染canvas，否则，使用这个图片将会污染canvas。
+
+    //一个常用的应用就是将第二个canvas作为另一个大的 canvas 的缩略图。
+
+    //通过 data: url 方式嵌入图像
+    //通过 data:url 方式来引用图像。Data urls 允许用一串 Base64 编码的字符串的方式来定义一个图片
+    //绘制图片
+    //drawImage(image, x, y),其中 image 是 image 或者 canvas 对象，x 和 y 是其在目标 canvas 里的起始坐标。
+    function drawImageTest() {
+        var img = new Image();
+        //onload 事件在图片加载完成后立即执行。
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+            ctx.beginPath();
+            ctx.moveTo(30,96);
+            ctx.lineTo(70,66);
+            ctx.lineTo(103,76);
+            ctx.lineTo(170,15);
+            ctx.stroke();
+        };
+        img.src = "https://mdn.mozillademos.org/files/206/Canvas_backdrop.png";
+    }
+//    drawImageTest();
+    //缩放 Scaling
+    //drawImage(image, x, y, width, height)这个方法多了2个参数：width 和 height，这两个参数用来控制 当像canvas画入时应该缩放的大小
+    function drawScalingImageTest() {
+        var ctx = document.getElementById('canvas').getContext('2d');
+        var img = new Image();
+        img.onload = function(){
+            for (var i=0;i<4;i++){
+                for (var j=0;j<3;j++){
+                    ctx.drawImage(img,j*50,i*38,50,38);
+                }
+            }
+        };
+        img.src = 'https://mdn.mozillademos.org/files/5397/rhino.jpg';
+    }
+//    drawScalingImageTest();
+
+    //切片 Slicing
+    //drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+    //其它8个参数最好是参照右边的图解，前4个是定义图像源的切片位置和大小，后4个则是定义切片的目标显示位置和大小。
 </script>
 </body>
 </html>

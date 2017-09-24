@@ -1,4 +1,6 @@
 $(function () {
+    console.log(window.innerHeight);
+    console.log(window.innerWidth);
     //为全部图片按钮绑定事件
     $("#allPicsButton").click(function () {
         bundEventsOnLi();
@@ -7,6 +9,7 @@ $(function () {
 
     loadMainPic();
 
+    drawTheTree();
 });
 
 //为全部图片中每张图片绑定事件
@@ -51,4 +54,21 @@ function loadImg(url, callback) {
 function polishTheBorders() {
     $("#mainPic").addClass("picBorderAndShadow");
 
+}
+
+function drawTheTree() {
+    var windowWidth = window.innerWidth;
+    var windowHeight = window.innerHeight;
+    console.log(windowWidth);
+    console.log(windowHeight);
+    var rootPositionX = windowWidth / 2, rootPositionY = windowHeight;
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.lineWidth = 1;
+    ctx.lineJoin = 'bevel';
+    ctx.beginPath();
+    console.log(rootPositionX);
+    ctx.moveTo(rootPositionX, rootPositionY);
+    ctx.lineTo(rootPositionX, rootPositionY - 100);
+    ctx.stroke();
 }
