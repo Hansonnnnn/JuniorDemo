@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>编程异步处理</title>
+    <!--该文件实现的主要知识点：两种异步执行的实现方法-->
+</head>
+<body>
+    显示结果：<p class="container"></p>
+            <button>嵌套回调异步</button>
+            <button>$.Deferred异步</button>
+</body>
+<!--dtd.then(function() {
+   //操作1
+}).then(function() {
+   //操作2
+}).then(function() {
+  //操作3
+})-->
+<!--了解3个步骤-->
+<!--var dtd = $.Deferred();  //创建-->
+<!--dtd.resolve();          //成功-->
+<!--dtd.then()              //执行回调-->
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $("button:first").click(function () {
+            //模拟异步A
+            function A(callback) {
+                setTimeout(function () {
+                    callback(1);
+                }, 500)
+            }
+
+            //模拟异步B
+            function B(callback, value) {
+                setTimeout(function () {
+                    callback(value + 2);
+                }, 1000)
+            }
+
+            //A执行过之后，再执行B
+            A(function (data1) {
+                B(function (data2) {
+                    $(".container").html("嵌套异步:" + data2)
+                }, data1)
+            })
+        })
+
+        $("button:last").click(function () {
+            // $.Deferred改造
+            //模拟异步C
+            function C() {
+                var dtd = $.Deferred();
+                setTimeout(function () {
+                    dtd.resolve(3);
+                }, 500)
+                return dtd;
+            }
+            //模拟异步D
+            function D(value) {
+                var dtd = $.Deferred();
+                setTimeout(function () {
+                    dtd.resolve(value + 4);
+                }, 500)
+                return dtd;
+            }
+            //模拟异步E
+            function E(value) {
+                var dtd = $.Deferred(); //创建
+                setTimeout(function() {
+                    dtd.resolve(value + 5)
+                }, 1000)
+                return dtd;
+            }
+
+            C().then(
+                function (data) {
+                    return D(data);
+                }
+            ).then(function (data) {
+                return E(data)
+            }).then(function (data) {
+                $(".container").html("Deferred异步处理:" + data)
+            })
+        })
+    </script>
+
+</html>

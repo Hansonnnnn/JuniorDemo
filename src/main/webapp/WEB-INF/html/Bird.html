@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+    <title>圣诞主题</title>
+    <!--该文件实现的主要知识点：按比例缩放 + 动画让鸟飞起来-->
+    <link rel="stylesheet" href="../css/index.css">
+    <script type="text/javascript">
+        var docEle = document.documentElement,
+            resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+            recalc = function () {
+                //set the size of root font
+                docEle.style.fontSize = 20 * (docEle.clientWidth/320) + 'px'
+            };
+        //给html设置fontSize大小，其实就是在DOMContentLoaded或者resize变化后调整fontSize的大小，
+        // 从而调整rem的比值关系。慕课的布局是右边区域展示，所以按照移动端的320宽度为标准去做适配的，当然基于这个缩放都是没关系的
+        window.addEventListener(resizeEvt, recalc, false);
+        document.addEventListener('DOMContentLoaded', recalc, false);
+    </script>
+    <!--transition是css3引入的"过渡"属性，可以让css的属性值在一定
+    的时间区间内平滑地过渡，考虑兼容性问题，这里会额外引入一个插件jquery.transit
+    ，这个就是具体封装了transition的CSS3过渡动画的实现-->
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://static.mukewang.com/img/down/55ac9ea30001ace700000000.js"></script>
+    <style type="text/css">
+        /*<!--这段代码为什么放在单独的CSS文件中不起作用-->*/
+        .birdFly{
+            /*写法1*/
+            -moz-animation: bird-slow 400ms steps(1, start) infinite;
+
+            /*写法2*/
+            -webkit-animation-name: bird-slow;
+            -webkit-animation-duration: 400ms;
+            -webkit-animation-timing-function: steps(3);
+            -webkit-animation-iteration-count: infinite;
+        }
+
+    </style>
+</head>
+<body>
+    <!--<section>-->
+        <!--1-->
+        <!--<div class="page">rem跟着html:font-size变化</div>-->
+    <!--</section>-->
+    <!--2-->
+    <!--steps(3)实现帧动画-->
+    <div class="bird birdFly"></div>
+    <button>按一下让鸟飞起来</button>
+</body>
+<script type="text/javascript">
+    $("button").click(function () {
+//        让鸟从图片右边飞出来，向左飞3rem(想得到想要的效果，得设置right:0)
+        $(".bird").transition({
+            'right': '3rem'
+        }, 10000, 'linear', function () {
+            alert("Game over!")
+        })
+    })
+</script>
+</html>

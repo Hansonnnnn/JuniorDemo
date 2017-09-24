@@ -1,0 +1,85 @@
+/*两列测试rem的代码*/
+/*section{*/
+    /*width: 20%;*/
+    /*height: 100%;*/
+    /*background-color: red;*/
+/*}*/
+
+/*.page{*/
+    /*width: 1rem;*/
+    /*height: 10rem;*/
+    /*background: yellow;*/
+    /*font-size: 0.3rem;*/
+/*}*/
+
+/*飞鸟的代码*/
+.bird{
+    /*min-width: 91px;*/
+    /*min-height: 71px;*/
+    min-width: 1.5rem;
+    min-height: 1rem;
+    top: 20%;
+    right: 0;
+    position: absolute;
+    z-index: 10;
+    background: url(http://static.mukewang.com/img/55ade1700001b38302730071.png);
+}
+
+/*.birdFly{*/
+    /*!*写法1*!*/
+    /*-moz-animation: bird-slow 400ms steps(1, start) infinite;*/
+
+    /*!*写法2*!*/
+    /*-webkit-animation-name: bird-slow;*/
+    /*-webkit-animation-duration: 400ms;*/
+    /*-webkit-animation-timing-function: steps(3);*/
+    /*-webkit-animation-iteration-count: infinite;*/
+/*}*/
+
+/*两种实现方法，一种是坐标变换，一种是比例变化*/
+
+/*使用css sprite雪碧图将多张图片通过坐标变换叠加成一张图片，坐标变换*/
+/*存在的问题：必须通过绝对尺寸获取图片坐标，否则就会出错，大多情况下可能会准备2套图片*/
+@-webkit-keyframes bird-slow {
+    0%{background-position: -0px 0px;}
+    100%{background-position: -273px 0px;}
+}
+
+@-moz-keyframes bird-slow {
+    0% {
+        background-position: -182px 0px;
+    }
+    50% {
+        background-position: 0px 0px;
+    }
+    75% {
+        background-position: -91px 0px;
+    }
+    100% {
+        background-position: -182px 0px;
+    }
+}
+
+
+/*比例变换*/
+.bird{
+    background-size: 300% 100%;
+}
+@-webkit-keyframes bird-slow {
+    0%{background-position: 0% 0%;}
+    100%{background-position: -300% 100%}
+}
+@-moz-keyframes bird-slow {
+    0% {
+        background-position: -0% 0%;
+    }
+    50% {
+        background-position: -100% 0%;
+    }
+    75% {
+        background-position: -200% 0%;
+    }
+    100% {
+        background-position: -300% 0%;
+    }
+}

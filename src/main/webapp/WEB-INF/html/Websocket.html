@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket</title>
+</head>
+<body>
+    <textarea id="text"></textarea>
+    <button id="sendButton">发送</button>
+    <div id="receive"></div>
+    <script type="text/javascript">
+        var webSocket = new WebSocket("ws://echo.websocket.org/")
+        webSocket.onopen = function (event) {
+            console.log("webSocket open");
+            document.getElementById("receive").innerHTML = "Connected";
+        };
+        webSocket.onclose = function (p1) {
+            console.log("webSocket close");
+        };
+        webSocket.onmessage = function (p1) {
+            console.log(p1.data);
+            document.getElementById("receive").innerText = p1.data;
+        };
+        document.getElementById("sendButton").onclick = function () {
+            var txt = document.getElementById("text").value;
+            webSocket.send(txt);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas_Demo</title>
+    <!--知识点：Canvas-->
+</head>
+<body>
+    <canvas id="cvs"></canvas>
+    <script type="text/javascript">
+        var cvs = document.getElementById("cvs");
+        var ctx = cvs.getContext('2d');
+        ctx.strokeStyle = "red";
+        ctx.strokeRect(10, 10, 190, 100);
+        ctx.fillStyle = "blue";
+        ctx.fillRect(10, 10, 180, 100);
+    </script>
+</body>
+</html>

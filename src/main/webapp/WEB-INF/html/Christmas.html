@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>圣诞主题</title>
+    <link rel="stylesheet" href="../css/Christmas.css">
+    <link rel="stylesheet" href="../css/pageA.css">
+</head>
+<body>
+    <section class="container">
+        <section class="page-a bg-adaptive">
+            <figure class="moon"></figure>
+            <figure class="tree"></figure>
+            <figure class="cloudy"></figure>
+            <!-- 男孩 -->
+            <div class="chs-boy chs-boy-deer"></div>
+        </section>
+        <section class="page-b bg-adaptive"></section>
+        <section class="page-c bg-adaptive"></section>
+    </section>
+    选择页面：
+    <select id="page">
+        <option value="page-a" selected>1</option>
+        <option value="page-b">2</option>
+        <option value="page-c">3</option>
+    </select>
+    <button id="changePageButton">点击运行场景切换</button>
+    <button id="playMusicButton">点击播放音乐</button>
+    <button id="loopMusicButton">点击播放循环音乐</button>
+    <button id="playSleighAnimationButton">点击运行雪橇动作</button>
+</body>
+<script src="../js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="http://img.mukewang.com/down/55ac9ea30001ace700000000.js"></script>
+<script src="../js/pageA.js"></script>
+<script src="../js/pageB.js"></script>
+<script src="../js/pageC.js"></script>
+<script src="../js/Observer.js"></script>
+<script src="../js/christmas.js"></script>
+<script type="text/javascript">
+    var doc = document;
+//    /**
+//     * 下拉选择页面: 实现的原理：通过调整每个场景的index层级来实现层叠
+//     */
+//    var page = document.querySelector("#page");//@type {[type]},这句话在注释里起什么作用
+//    //层级
+//    var index = 10;
+//    //切换
+//    page.addEventListener('change', function (e) {
+//        //页面元素
+////        var pageElement = document.querySelector("." + e.target.value);
+////        pageElement.style.zIndex = ++index;
+//        var pageName = e.target.value;
+//        switch (pageName){
+//            case "page-b":
+//            //切换到b页面，所以需要在当前a页面执行动画
+//            //让元素慢慢放大，所以需呀控制a元素
+//                $(".page-a").addClass("effect-out")
+//                break;
+//            case "page-c":
+//            //切换到c页面，所以需要在目标c页面执行动画
+//            //因为让要c页面先放大，然后缩小
+//                $(".page-c").addClass("effect-in")
+//                break;
+//        }
+//    }, false)
+
+    /**
+     * 针对content中的html文本框
+     * 增加rem的修改
+     * @param  {[type]} doc [description]
+     * @param  {[type]} win [description]
+     * @return {[type]}     [description]
+     */
+
+    var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+            //自适应设置容器高度
+            var container = document.querySelector(".container");
+            //原始比例
+            var proportion = 900 / 1440;
+            //根据原始比例和现有宽度，即可计算出现在的高度
+            container.style.height = container.clientWidth * proportion + 'px';
+        };
+    window.addEventListener(resizeEvt, recalc, false);
+    doc.addEventListener('DOMContentLoaded', recalc, false);
+</script>
+</html>
