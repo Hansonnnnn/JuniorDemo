@@ -1,0 +1,37 @@
+还未解决的bugs:
+1.innerWidth可能用的有点问题，当放大内部窗口之后---刷新，不能正确定位
+解决：
+    console.log($(window).width());
+    console.log(document.documentElement.clientWidth);
+    console.log(window.innerWidth);
+    console.log(window.outerWidth);
+
+四个里面只有innerWidth是和其他不一样的，当缩放窗口时，其他三个是不变的，只有这个变
+
+
+拉斐尔 雅典学院 (宽 >> 高)
+https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2781997830,2775448056&fm=27&gp=0.jpg
+创世纪 (宽 >> 高)
+https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506573106356&di=3dfc39fc7161d1840cc96bc4a09888f5&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D78617915%2C3807505875%26fm%3D214%26gp%3D0.jpg
+appal pencil
+../images/apple_pencil.png
+
+
+蒙娜丽莎 (高 > 宽)
+https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506531457724&di=222b0479fa78bfab89754b76f2502b83&imgtype=0&src=http%3A%2F%2Fwww.69ys.com%2FupFile%2Fkindeditorfile%2Fimage%2F20140724%2F20140724224829_9687.jpg
+毕加索式的我（高>宽）
+https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1507126271&di=31302b250ebf36eee539bc6b3afc2b91&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01da4659041422a801214550259bc9.jpg%40900w_1l_2o_100sh.jpg
+深泽直人
+https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506574378188&di=dfab18013bbc8c6ca6830cece47e3262&imgtype=0&src=http%3A%2F%2Fimg1.ph.126.net%2FepTuYYYwBruEmtRth0Lx9A%3D%3D%2F2774217370477887187.jpg
+乔布斯
+https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506574217851&di=9e417c6d25070f24a6ae73c131ce14ef&imgtype=0&src=http%3A%2F%2Fnews.chinaceot.com%2Fupload%2Fpic%2F1104%2F20110429_c4ca42.jpg
+
+
+
+毕加索照片（正方形）
+https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1506572779085&di=4b4b083a5b45d7466918712d991c1302&imgtype=0&src=http%3A%2F%2Fis5.mzstatic.com%2Fimage%2Fthumb%2FPurple5%2Fv4%2F74%2F4b%2F6f%2F744b6f50-8486-6ffb-3056-175e5e85e12c%2Fpr_source.png%2F0x0ss-85.jpg
+爱马仕丝巾
+http://media.hermes.com/media/catalog/product/import/S/S01/S011/item/flat/zoom/H003119S-10.jpg
+
+2.不同的图片怎么放置在适合的位置？
+是在服务器端处理还是在客户端解决？-------------宽高比，根据不同的宽高比，将各类图片分配到不同的集合当中
